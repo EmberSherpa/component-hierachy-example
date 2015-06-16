@@ -1,0 +1,10 @@
+{{#if node}}
+  <span {{action 'toggleOpenness'}}>{{if isOpen '-' '+'}}{{node.name}}</span>
+{{/if}}
+{{#if isOpen}}
+  <ul>
+    {{#each children as |child|}}
+      {{async-tree node=child parent=node fetch=fetch}}
+    {{/each}}
+  </ul>
+{{/if}}
