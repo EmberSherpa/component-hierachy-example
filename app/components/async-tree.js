@@ -1,17 +1,22 @@
 import Ember from 'ember';
 
-const {on} = Ember;
+const {on, get} = Ember;
 const {oneWay, equal} = Ember.computed;
 
 export default Ember.Component.extend({
-  isOpen: false,
+  isOpen: Ember.computed('checkOpen', 'node', {
+    get() {
+      let node = this.get('node');
+      let checkOpen = this.get('checkOpen');
+      return checkOpen(node);
+    }
+  }),
   initialData: on('init', function(){
     this.fetchData()
-      .then((children)=>{
+      .then((children=[])=>{
         if (children.length === 1) {
-          this.set('isOpen', true);
+          this.sendAction('open', get(children, 'firstObject'));
         }
-        return children;
       });
   }),
   fetchData: function() {
@@ -28,8 +33,13 @@ export default Ember.Component.extend({
     return fetch(this.get('node'));
   },
   actions: {
-    toggleOpenness() {
-      this.set('isOpen', !this.get('isOpen'));
+    open() {
+      let node = this.get('node');
+      this.sendAction('open', node);
+    },
+    close() {
+      let node = this.get('node');
+      this.sendAction('close', node);
     }
   }
 });

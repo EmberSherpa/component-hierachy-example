@@ -1,3 +1,36 @@
-{{#async-tree fetch=fetch as |child parent|}}
-  {{async-tree node=child parent=parent fetch=fetch}}
+{{#async-tree
+  fetch=fetch
+  checkOpen=checkOpen
+  open="open"
+  close="close"
+  as |child parent|
+}}
+  {{#async-tree
+    node=child
+    parent=parent
+    fetch=fetch
+    checkOpen=checkOpen
+    open="open"
+    close="close"
+    as |child parent|
+    }}
+    {{#async-tree
+      node=child
+      parent=parent
+      fetch=fetch
+      checkOpen=checkOpen
+      open="open"
+      close="close"
+      as |child parent|
+    }}
+      {{async-tree
+        node=child
+        parent=parent
+        fetch=fetch
+        checkOpen=checkOpen
+        open="open"
+        close="close"
+      }}
+    {{/async-tree}}
+  {{/async-tree}}
 {{/async-tree}}

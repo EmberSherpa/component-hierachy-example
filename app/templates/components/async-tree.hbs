@@ -1,14 +1,10 @@
-{{#if node}}
-  <span {{action 'toggleOpenness'}}>{{if isOpen '-' '+'}}{{node.name}}</span>
-{{/if}}
 {{#if isOpen}}
-  <ul>
+  {{#if node}}
+    <button {{action 'close'}}>-</button> {{node.name}}
+  {{/if}}
   {{#each children as |child|}}
-    {{#if template}}
-      {{yield child node}}
-    {{else}}
-      {{async-tree node=child parent=node fetch=fetch}}
-    {{/if}}
+    {{yield child node}}
   {{/each}}
-  </ul>
+{{else}}
+  <button {{action 'open'}}>+</button> {{node.name}}
 {{/if}}

@@ -9,8 +9,7 @@ export default function() {
     }
     if (request.queryParams.type === 'client') {
       result = [
-        { id: 2, type: 'site', parent: request.queryParams.id, name: 'Sunny Field' },
-        { id: 3, type: 'site', parent: request.queryParams.id, name: 'Warm Side' }
+        { id: 2, type: 'site', parent: request.queryParams.id, name: 'Sunny Field' }
       ]
     }
     if (request.queryParams.type === 'site') {
