@@ -3,8 +3,12 @@
 {{/if}}
 {{#if isOpen}}
   <ul>
-    {{#each children as |child|}}
+  {{#each children as |child|}}
+    {{#if template}}
+      {{yield child node}}
+    {{else}}
       {{async-tree node=child parent=node fetch=fetch}}
-    {{/each}}
+    {{/if}}
+  {{/each}}
   </ul>
 {{/if}}

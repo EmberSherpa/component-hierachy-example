@@ -1,1 +1,3 @@
-{{async-tree fetch=fetch}}
+{{#async-tree fetch=fetch as |child parent|}}
+  {{async-tree node=child parent=parent fetch=fetch}}
+{{/async-tree}}

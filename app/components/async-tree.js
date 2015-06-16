@@ -5,7 +5,7 @@ const {oneWay, equal} = Ember.computed;
 
 export default Ember.Component.extend({
   isOpen: false,
-  initialOpen: on('didInsertElement', function(){
+  initialData: on('init', function(){
     this.fetchData()
       .then((children)=>{
         if (children.length === 1) {
