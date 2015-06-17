@@ -1,10 +1,21 @@
 {{#if isOpen}}
-  {{#if node}}
-    <button {{action 'close'}}>-</button> {{node.name}}
-  {{/if}}
+  {{yield node isOpen hasChildren}}
+  <ul>
   {{#each children as |child|}}
-    {{yield child node}}
+    {{#async-tree
+      tagName="li"
+      fetch=fetch
+      checkOpen=checkOpen
+      open="open"
+      close="close"
+      parent=node
+      node=child
+      as |child isOpen hasChildren|
+    }}
+      {{yield child isOpen hasChildren}}
+    {{/async-tree}}
   {{/each}}
+  </ul>
 {{else}}
-  <button {{action 'open'}}>+</button> {{node.name}}
+  {{yield node isOpen hasChildren}}
 {{/if}}

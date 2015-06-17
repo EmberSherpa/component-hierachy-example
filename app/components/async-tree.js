@@ -4,6 +4,7 @@ const {on, get} = Ember;
 const {oneWay, equal} = Ember.computed;
 
 export default Ember.Component.extend({
+  hasChildren: Ember.computed.gt('children.length', 0),
   isOpen: Ember.computed('checkOpen', 'node', {
     get() {
       let node = this.get('node');
@@ -33,12 +34,10 @@ export default Ember.Component.extend({
     return fetch(this.get('node'));
   },
   actions: {
-    open() {
-      let node = this.get('node');
+    open(node) {
       this.sendAction('open', node);
     },
-    close() {
-      let node = this.get('node');
+    close(node) {
       this.sendAction('close', node);
     }
   }

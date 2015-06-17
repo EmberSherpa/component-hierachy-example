@@ -2,35 +2,16 @@
   fetch=fetch
   checkOpen=checkOpen
   open="open"
-  close="close"
-  as |child parent|
+  as |node isOpen hasChildren|
 }}
-  {{#async-tree
-    node=child
-    parent=parent
-    fetch=fetch
-    checkOpen=checkOpen
-    open="open"
-    close="close"
-    as |child parent|
-    }}
-    {{#async-tree
-      node=child
-      parent=parent
-      fetch=fetch
-      checkOpen=checkOpen
-      open="open"
-      close="close"
-      as |child parent|
-    }}
-      {{async-tree
-        node=child
-        parent=parent
-        fetch=fetch
-        checkOpen=checkOpen
-        open="open"
-        close="close"
-      }}
-    {{/async-tree}}
-  {{/async-tree}}
+  {{#if node}}
+    {{#if hasChildren}}
+      {{#if isOpen}}
+        <button {{action 'close' node}}>-</button>
+      {{else}}
+        <button {{action 'open' node}}>+</button>
+      {{/if}}
+    {{/if}}
+    {{node.name}}
+  {{/if}}
 {{/async-tree}}

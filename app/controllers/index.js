@@ -37,7 +37,10 @@ export default Ember.Controller.extend({
   actions: {
     open(node) {
       let id = get(node, 'id');
-      this.get('opened').pushObject(id);
+      let opened = this.get('opened');
+      if (!opened.contains(id)){
+        opened.pushObject(id);
+      };
     },
     close(node) {
       let id = get(node, 'id');

@@ -19,6 +19,13 @@ export default function() {
         { id: 6, type: 'component', parent: request.queryParams.id, name: 'Medium resistor' }
       ]
     }
+    if (request.queryParams.type === 'component') {
+      result = [
+        { id: 7, type: 'atom', parent: request.queryParams.id, name: 'Atom 1' },
+        { id: 8, type: 'atom', parent: request.queryParams.id, name: 'Atom 2' },
+        { id: 9, type: 'atom', parent: request.queryParams.id, name: 'Atom 3' }
+      ]
+    }
     return result;
   });
 
