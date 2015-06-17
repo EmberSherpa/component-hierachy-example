@@ -1,30 +1,31 @@
 export default function() {
 
   this.get('/children', function(db, request) {
+    let id = request.queryParams.id;
     let result = [];
     if (request.queryParams.type == null) {
       result = [
         { id: 1, type: 'client', parent: null, name: 'Sunny Corp.' }
-      ]
+      ];
     }
     if (request.queryParams.type === 'client') {
       result = [
-        { id: 2, type: 'site', parent: request.queryParams.id, name: 'Sunny Field' }
-      ]
+        { id: 2, type: 'site', parent: id, name: 'Sunny Field' }
+      ];
     }
     if (request.queryParams.type === 'site') {
       result = [
-        { id: 4, type: 'component', parent: request.queryParams.id, name: 'Big sensor' },
-        { id: 5, type: 'component', parent: request.queryParams.id, name: 'Small sensor' },
-        { id: 6, type: 'component', parent: request.queryParams.id, name: 'Medium resistor' }
-      ]
+        { id: 4, type: 'component', parent: id, name: 'Big sensor' },
+        { id: 5, type: 'component', parent: id, name: 'Small sensor' },
+        { id: 6, type: 'component', parent: id, name: 'Medium resistor' }
+      ];
     }
     if (request.queryParams.type === 'component') {
       result = [
-        { id: 7, type: 'atom', parent: request.queryParams.id, name: 'Atom 1' },
-        { id: 8, type: 'atom', parent: request.queryParams.id, name: 'Atom 2' },
-        { id: 9, type: 'atom', parent: request.queryParams.id, name: 'Atom 3' }
-      ]
+        { id: 7, type: 'atom', parent: id, name: 'Atom 1' },
+        { id: 8, type: 'atom', parent: id, name: 'Atom 2' },
+        { id: 9, type: 'atom', parent: id, name: 'Atom 3' }
+      ];
     }
     return result;
   });

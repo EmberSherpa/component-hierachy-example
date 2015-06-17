@@ -12,6 +12,8 @@
         <button {{action 'open' node}}>+</button>
       {{/if}}
     {{/if}}
+    {{#component (get-component-name node.type)}}
     {{node.name}}
+    {{/component}}
   {{/if}}
 {{/async-tree}}

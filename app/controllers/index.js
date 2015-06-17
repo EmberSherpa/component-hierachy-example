@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import ajax from 'ic-ajax';
 
-const {get} = Ember;
+const {get, $} = Ember;
 
 export default Ember.Controller.extend({
   queryParams: ["opened"],
@@ -17,7 +17,7 @@ export default Ember.Controller.extend({
           });
         }
         return ajax(`/children?${query}`);
-      }
+      };
       return fetch.bind(this);
     }
   }),
@@ -30,7 +30,7 @@ export default Ember.Controller.extend({
         }
         let id = get(node, 'id');
         return opened.contains(id);
-      }
+      };
       return checkOpen;
     }
   }),
@@ -40,7 +40,7 @@ export default Ember.Controller.extend({
       let opened = this.get('opened');
       if (!opened.contains(id)){
         opened.pushObject(id);
-      };
+      }
     },
     close(node) {
       let id = get(node, 'id');

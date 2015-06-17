@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 const {on, get} = Ember;
-const {oneWay, equal} = Ember.computed;
 
 export default Ember.Component.extend({
   hasChildren: Ember.computed.gt('children.length', 0),
